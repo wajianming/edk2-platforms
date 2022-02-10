@@ -993,7 +993,7 @@ DEFINE EDKII_DSC_FEATURE_BUILD_OPTIONS = $(EDKII_DSC_FEATURE_BUILD_OPTIONS) $(ME
 #
 # Override ASL Compiler parameters in tools_def.template.
 #
-  *_*_*_ASL_FLAGS == -vr -we -oi
+  *_*_*_ASL_FLAGS == -vr -we -oi -vw 3150
 #
 # Override the VFR compile flags to speed the build time
 #
