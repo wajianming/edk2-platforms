@@ -100,7 +100,19 @@ BoardInitDxeDriverEntry (
       break;
 
     default:
-      // CAN'T GO TO HERE.
+      if (TypeOemVender <= PlatformType)
+      {
+        DEBUG ((DEBUG_WARN, "Platforms from Vender. Makre sure paltform code install corresponding protocol."));
+        Status = gBS->InstallProtocolInterface (
+          &Handle,
+          //&gEfiPlatformTypeSMCIx12SPWProtocolGuid,
+          &gEfiPlatformTypeWilsonCityRPProtocolGuid,
+          EFI_NATIVE_INTERFACE,
+          NULL
+          );
+        break;
+      }
+        // CAN'T GO TO HERE.
       ASSERT (FALSE);
   }
 

@@ -65,6 +65,8 @@ typedef enum {
   TypeBigPineKey,
   TypeExperWorkStationRP,
   TypeJunctionCity,
+  TypeOemVender = 0xA0,
+  TypeSupermicro = 0xA1,
   EndOfEfiPlatformTypeEnum
 } EFI_PLATFORM_TYPE;
 

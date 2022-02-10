@@ -64,6 +64,7 @@
   gEfiPlatformTypeWilsonCitySMTProtocolGuid              #PRODUCER
   gEfiPlatformTypeCooperCityRPProtocolGuid               #PRODUCER
   gEfiPlatformTypeJunctionCityProtocolGuid               #PRODUCER
+  gEfiPlatformTypeSMCIx12SPWProtocolGuid                 #PRODUCER
 
 [FixedPcd]
   gEfiCpRcPkgTokenSpaceGuid.PcdMaxCpuSocketCount
