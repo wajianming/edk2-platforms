@@ -35,6 +35,23 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/BaseMemoryLib.h>
 #include <SioRegs.h>
 
+typedef struct {
+  UINT8   Index;
+  UINT8   Data;
+} SIO_REG_TABLE;
+
+STATIC  SIO_REG_TABLE  mASPEED2500Table [] = {
+  { REG_LOGICAL_DEVICE,       ASPEED2500_SIO_UART1 },
+  { ACTIVATE,                 0x01 },
+  { PRIMARY_INTERRUPT_SELECT, 0x04 },    // COMA IRQ routing
+  { INTERRUPT_TYPE, 0x01 },    // COMA Interrupt Type
+  { REG_LOGICAL_DEVICE,       ASPEED2500_SIO_UART2 },
+  { ACTIVATE,                 0x01 },
+  { PRIMARY_INTERRUPT_SELECT, 0x03 },    // COMB IRQ routing
+  { INTERRUPT_TYPE, 0x01 }     // COMB Interrupt Type
+};
+
+
 EFI_STATUS
 UpdatePlatformInfo (
   IN   SYSTEM_CONFIGURATION                             *SystemConfiguration,
@@ -57,6 +74,71 @@ BoardDebugInit (
   VOID
   )
 {
+  UINT32                          Index;
+  UINT16                          Data16;
+  UINT8                           Data8;
+  UINTN                           LpcBaseAddress;
+  UINT8                           TcoRebootHappened;
+  UINTN                           SpiBaseAddress;
+  UINTN                           P2sbBase;
+  EFI_STATUS                      Status = EFI_SUCCESS;
+  DYNAMIC_SI_LIBARY_PPI           *DynamicSiLibraryPpi = NULL;
+
+  Status = PeiServicesLocatePpi (&gDynamicSiLibraryPpiGuid, 0, NULL, &DynamicSiLibraryPpi);
+  if (EFI_ERROR (Status)) {
+    ASSERT_EFI_ERROR (Status);
+    return Status;
+  }
+
+  LpcBaseAddress = DynamicSiLibraryPpi->MmPciBase (
+                     DEFAULT_PCI_BUS_NUMBER_PCH,
+                     PCI_DEVICE_NUMBER_PCH_LPC,
+                     PCI_FUNCTION_NUMBER_PCH_LPC
+                     );
+  SpiBaseAddress = DynamicSiLibraryPpi->MmPciBase (
+                     DEFAULT_PCI_BUS_NUMBER_PCH,
+                     PCI_DEVICE_NUMBER_PCH_SPI,
+                     PCI_FUNCTION_NUMBER_PCH_SPI
+                     );
+  P2sbBase = DynamicSiLibraryPpi->MmPciBase (
+               DEFAULT_PCI_BUS_NUMBER_PCH,
+               PCI_DEVICE_NUMBER_PCH_P2SB,
+               PCI_FUNCTION_NUMBER_PCH_P2SB
+               );
+
+  MmioWrite32 (P2sbBase + R_P2SB_CFG_SBREG_BAR, PCH_PCR_BASE_ADDRESS);
+  MmioOr8 (P2sbBase + PCI_COMMAND_OFFSET, EFI_PCI_COMMAND_MEMORY_SPACE);
+  //
+  // LPC I/O Configuration
+  //
+  DynamicSiLibraryPpi->PchLpcIoDecodeRangesSet (
+    (V_LPC_CFG_IOD_LPT_378  << N_LPC_CFG_IOD_LPT)  |
+    (V_LPC_CFG_IOD_COMB_3E8 << N_LPC_CFG_IOD_COMB) |
+    (V_LPC_CFG_IOD_COMA_3F8 << N_LPC_CFG_IOD_COMA)
+    );
+
+  DynamicSiLibraryPpi->PchLpcIoEnableDecodingSet (
+    B_LPC_CFG_IOE_ME2  |
+    B_LPC_CFG_IOE_SE   |
+    B_LPC_CFG_IOE_ME1  |
+    B_LPC_CFG_IOE_KE   |
+    B_LPC_CFG_IOE_HGE  |
+    B_LPC_CFG_IOE_LGE  |
+    B_LPC_CFG_IOE_FDE  |
+    B_LPC_CFG_IOE_PPE  |
+    B_LPC_CFG_IOE_CBE  |
+    B_LPC_CFG_IOE_CAE
+    );
+
+  IoWrite8 (ASPEED2500_SIO_INDEX_PORT, ASPEED2500_SIO_UNLOCK);
+  IoWrite8 (ASPEED2500_SIO_INDEX_PORT, ASPEED2500_SIO_UNLOCK);
+
+  for (Index = 0; Index < sizeof (mASPEED2500Table)/sizeof (SIO_REG_TABLE); Index++) {
+    IoWrite8 (ASPEED2500_SIO_INDEX_PORT, mASPEED2500Table[Index].Index);
+    IoWrite8 (ASPEED2500_SIO_DATA_PORT, mASPEED2500Table[Index].Data);
+  }
+  IoWrite8 (ASPEED2500_SIO_INDEX_PORT, ASPEED2500_SIO_LOCK);
+  DEBUG((DEBUG_INFO, "EarlyPlatformPchInit - Start\n"));
 
   return EFI_SUCCESS;
 }
