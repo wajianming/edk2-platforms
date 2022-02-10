@@ -588,6 +588,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
   INF  MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
   INF  MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
   INF  MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
+  INF  RuleOverride = DRIVER_ACPITABLE $(RP_PKG)/Acpi/BoardAcpiDxe/BoardAcpiDxe.inf
 
   FILE FV_IMAGE = B7C9F0CB-15D8-26FC-CA3F-C63947B12831 {
     SECTION UI = "FvLateSilicon"

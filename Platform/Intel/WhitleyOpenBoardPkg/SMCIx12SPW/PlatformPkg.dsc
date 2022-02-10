@@ -79,6 +79,9 @@
   IpmiPlatformHookLib| $(RP_PKG)/$(BOARD_NAME)/Library/IpmiPlatformHookLib/IpmiPlatformHookLib.inf
 !endif
 
+[LibraryClasses.X64]
+  BoardAcpiTableLib|$(RP_PKG)/$(BOARD_NAME)/Library/BoardAcpiLib/DxeBoardAcpiTableLib.inf
+
 [Components.IA32]
   $(RP_PKG)/Uba/BoardInit/Pei/BoardInitPei.inf {
     <LibraryClasses>
@@ -88,6 +91,19 @@
   }
 
 [Components.X64]
+  $(RP_PKG)/Acpi/BoardAcpiDxe/BoardAcpiDxe.inf {
+    <BuildOptions>
+        MSFT:*_*_*_ASLCC_FLAGS = /D PURLEY_FLAG /D PCH_SPT
+        GCC:*_*_*_ASLCC_FLAGS  = -D PURLEY_FLAG -D PCH_SPT
+  }
+
+# This is for prebuild only. No need to include in final FDF.
+  $(RP_PKG)/Acpi/BoardAcpiDxe/Dsdt.inf {
+    <BuildOptions>
+        MSFT:*_*_*_ASLCC_FLAGS = /D PURLEY_FLAG /D PCH_SPT
+        GCC:*_*_*_ASLCC_FLAGS  = -D PURLEY_FLAG -D PCH_SPT
+  }
+
   # $(RP_PKG)/$(BOARD_NAME)/Uba/TypeSMCIx12SPW/Dxe/BoardInit/BoardInitDxe.inf
   $(RP_PKG)/$(BOARD_NAME)/Uba/TypeSMCIx12SPW/Dxe/UsbOcUpdateDxe/UsbOcUpdateDxe.inf
   $(RP_PKG)/$(BOARD_NAME)/Uba/TypeSMCIx12SPW/Dxe/IioCfgUpdateDxe/IioCfgUpdateDxe.inf

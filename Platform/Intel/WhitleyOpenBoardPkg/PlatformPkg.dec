@@ -392,6 +392,7 @@
   gSmbiosTablesTokenSpaceGuid.PcdSmbiosTablesSystemPowerSupplyModelPartNumber|"TBD"|VOID*|0x5B270005
   gSmbiosTablesTokenSpaceGuid.PcdSmbiosTablesSystemPowerSupplyRevisionLevel|"TBD"|VOID*|0x5B270006
 
+
 [PcdsFeatureFlag]
   gPlatformTokenSpaceGuid.PcdSupportUnsignedCapsuleImage|TRUE|BOOLEAN|0x00000020
 
@@ -897,6 +898,71 @@ gStructPcdTokenSpaceGuid.PcdTCG2_VERSION|{0}|TCG2_VERSION|0XFCD0000E{
 [PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamicEx]
   gOemSkuTokenSpaceGuid.PcdTurboPowerLimitLock|0x01|UINT8|0x00000209
   gOemSkuTokenSpaceGuid.PcdNumberOfCoresToDisable|0x0|UINT16|0x0000020A
+  gStructPcdTokenSpaceGuid.PcdSupermicroTestUINT32|0x9999|UINT32|0xA0000005
+  gStructPcdTokenSpaceGuid.PcdSupermicroTestPtr|{0}|SOCKET_IIO_CONFIGURATION|0xA0000015{
+   <HeaderFiles>
+    Include/Guid/SocketIioVariable.h
+   <Packages>
+    MdePkg/MdePkg.dec
+    MdeModulePkg/MdeModulePkg.dec
+    WhitleyOpenBoardPkg/PlatformPkg.dec
+    WhitleySiliconPkg/WhitleySiliconPkg.dec
+    WhitleySiliconPkg/SiliconPkg.dec
+    WhitleySiliconPkg/CpRcPkg.dec
+  }
+  gOemSkuTokenSpaceGuid.PcdSocketIioConfig|{0}|SOCKET_IIO_CONFIGURATION|0xA0000016{
+   <HeaderFiles>
+    Include/Guid/SocketIioVariable.h
+   <Packages>
+    MdePkg/MdePkg.dec
+    MdeModulePkg/MdeModulePkg.dec
+    WhitleyOpenBoardPkg/PlatformPkg.dec
+    WhitleySiliconPkg/WhitleySiliconPkg.dec
+    WhitleySiliconPkg/SiliconPkg.dec
+    WhitleySiliconPkg/CpRcPkg.dec
+  }
+  gOemSkuTokenSpaceGuid.PcdSocketMpLinkConfig|{0}|SOCKET_MP_LINK_CONFIGURATION|0xA0000017{
+   <HeaderFiles>
+    Include/Guid/SocketMpLinkVariable.h
+   <Packages>
+    MdePkg/MdePkg.dec
+    MdeModulePkg/MdeModulePkg.dec
+    WhitleyOpenBoardPkg/PlatformPkg.dec
+    WhitleySiliconPkg/WhitleySiliconPkg.dec
+    WhitleySiliconPkg/SiliconPkg.dec
+    WhitleySiliconPkg/CpRcPkg.dec
+  }
+  gOemSkuTokenSpaceGuid.PcdSocketPowerManagementConfig|{0}|SOCKET_POWERMANAGEMENT_CONFIGURATION|0xA0000018{
+   <HeaderFiles>
+    Include/Guid/SocketPowermanagementVariable.h
+   <Packages>
+    MdePkg/MdePkg.dec
+    MdeModulePkg/MdeModulePkg.dec
+    WhitleyOpenBoardPkg/PlatformPkg.dec
+    WhitleySiliconPkg/WhitleySiliconPkg.dec
+    WhitleySiliconPkg/SiliconPkg.dec
+    WhitleySiliconPkg/CpRcPkg.dec
+  }
+  gOemSkuTokenSpaceGuid.PcdSocketProcessorCoreConfig|{0}|SOCKET_PROCESSORCORE_CONFIGURATION|0xA0000019{
+   <HeaderFiles>
+    Include/Guid/SocketProcessorCoreVariable.h
+   <Packages>
+    MdePkg/MdePkg.dec
+    MdeModulePkg/MdeModulePkg.dec
+    WhitleyOpenBoardPkg/PlatformPkg.dec
+    WhitleySiliconPkg/WhitleySiliconPkg.dec
+    WhitleySiliconPkg/SiliconPkg.dec
+    WhitleySiliconPkg/CpRcPkg.dec
+  }
+  gOemSkuTokenSpaceGuid.PcdPchRcConfigurationData|{0x0}|PCH_RC_CONFIGURATION|0x000F0002 {          # PCH_RC_CONFIGURATION                 <== PCH_RC_CONFIGURATION_NAME|gEfiPchRcVariableGuid
+    <HeaderFiles>
+      Guid/PchRcVariable.h
+    <Packages>
+      MdePkg/MdePkg.dec
+      WhitleySiliconPkg/WhitleySiliconPkg.dec
+      WhitleySiliconPkg/SiliconPkg.dec
+      WhitleyOpenBoardPkg/PlatformPkg.dec
+  }
 
 [LibraryClasses]
   ServerManagementTimeStampLib|Include/Library/ServerManagementTimeStampLib.inf
