@@ -588,12 +588,12 @@ gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[10]|0x1                     
 gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[11]|0x1                                        # PCI Express Root Port 12
 gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[12]|0x1                                        # PCI Express Root Port 13
 gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[13]|0x1                                        # PCI Express Root Port 14
-gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[14]|0x1                                        # PCI Express Root Port 15
-gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[15]|0x1                                        # PCI Express Root Port 16
-gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[16]|0x1                                        # PCI Express Root Port 17
-gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[17]|0x1                                        # PCI Express Root Port 18
-gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[18]|0x1                                        # PCI Express Root Port 19
-gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[19]|0x1                                        # PCI Express Root Port 20
+gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[14]|0x0                                        # PCI Express Root Port 15
+gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[15]|0x0                                        # PCI Express Root Port 16
+gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[16]|0x0                                        # PCI Express Root Port 17
+gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[17]|0x0                                        # PCI Express Root Port 18
+gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[18]|0x0                                        # PCI Express Root Port 19
+gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEn[19]|0x0                                        # PCI Express Root Port 20
 gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEqPh3Method[0]|0x1                                # Gen3 Eq Phase3 Method
 gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEqPh3Method[1]|0x1                                # Gen3 Eq Phase3 Method
 gStructPcdTokenSpaceGuid.PcdPchSetup.PcieRootPortEqPh3Method[2]|0x1                                # Gen3 Eq Phase3 Method
@@ -887,14 +887,14 @@ gStructPcdTokenSpaceGuid.PcdPchSetup.SataExternal[5]|0x0                        
 gStructPcdTokenSpaceGuid.PcdPchSetup.SataExternal[6]|0x0                                           # Configure as eSATA
 gStructPcdTokenSpaceGuid.PcdPchSetup.SataExternal[7]|0x0                                           # Configure as eSATA
 gStructPcdTokenSpaceGuid.PcdPchSetup.SataHddlk|0x1                                                 # SATA HDD Unlock
-gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[0]|0x0                                            # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[1]|0x0                                            # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[2]|0x0                                            # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[3]|0x0                                            # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[4]|0x0                                            # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[5]|0x0                                            # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[6]|0x0                                            # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[7]|0x0                                            # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[0]|0x1                                            # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[1]|0x1                                            # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[2]|0x1                                            # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[3]|0x1                                            # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[4]|0x1                                            # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[5]|0x1                                            # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[6]|0x1                                            # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.SataHotPlug[7]|0x1                                            # Hot Plug
 gStructPcdTokenSpaceGuid.PcdPchSetup.SataInterfaceMode|0x0                                         # Configure SATA as
 gStructPcdTokenSpaceGuid.PcdPchSetup.SataLedl|0x1                                                  # SATA Led locate
 gStructPcdTokenSpaceGuid.PcdPchSetup.SataMechanicalSw[0]|0x0                                       # Mechanical Presence Switch
@@ -970,12 +970,12 @@ gStructPcdTokenSpaceGuid.PcdPchSetup.sSataExternal[3]|0x0                       
 gStructPcdTokenSpaceGuid.PcdPchSetup.sSataExternal[4]|0x0                                          # Configure as eSATA
 gStructPcdTokenSpaceGuid.PcdPchSetup.sSataExternal[5]|0x0                                          # Configure as eSATA
 gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHddlk|0x1                                                # SATA HDD Unlock
-gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[0]|0x0                                           # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[1]|0x0                                           # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[2]|0x0                                           # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[3]|0x0                                           # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[4]|0x0                                           # Hot Plug
-gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[5]|0x0                                           # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[0]|0x1                                           # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[1]|0x1                                           # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[2]|0x1                                           # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[3]|0x1                                           # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[4]|0x1                                           # Hot Plug
+gStructPcdTokenSpaceGuid.PcdPchSetup.sSataHotPlug[5]|0x1                                           # Hot Plug
 gStructPcdTokenSpaceGuid.PcdPchSetup.sSataInterfaceMode|0x0                                        # Configure sSATA as
 gStructPcdTokenSpaceGuid.PcdPchSetup.sSataLedl|0x1                                                 # SATA Led locate
 gStructPcdTokenSpaceGuid.PcdPchSetup.sSataPort[0]|0x1                                              # Port 0

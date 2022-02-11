@@ -9,6 +9,10 @@
 
 #include "SystemBoardInfoDxe.h"
 
+#define ONBOARD_VIDEO_OPTION_ROM_FILE_GUID \
+  { \
+    0x7F81D838, 0xF91D, 0x4C44, { 0x85, 0x52, 0x8F, 0xB9, 0x12, 0x12, 0x2F, 0xDD } \
+  }
 
 //
 // Describes Local APICs' connections.
@@ -116,6 +120,8 @@ PCI_OPTION_ROM_TABLE      mPciOptionRomTable[] = {
   //
   // End of OptionROM Entries
   //
+  //{ ONBOARD_VIDEO_OPTION_ROM_FILE_GUID,     0, 4, 0, 0, 0x1A03, 0x2000 },
+  { ONBOARD_VIDEO_OPTION_ROM_FILE_GUID,     0, 4, 0, 0, 0x1A03, 0x2000 },
   {
     NULL_ROM_FILE_GUID, // Guid
     0,                  // Segment

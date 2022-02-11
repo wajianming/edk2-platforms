@@ -36,7 +36,7 @@ DEFINE RAS_CPU_ONLINE_OFFLINE_ENABLE         = FALSE
 DEFINE SPARING_SCRATCHPAD_ENABLE             = TRUE
 DEFINE SCRATCHPAD_DEBUG                      = TRUE
 
-DEFINE TPM2_ENABLE                         = FALSE
+DEFINE TPM2_ENABLE                         = TRUE
 
 DEFINE ME_PATH_CONFIG                        = Me/MeSps.4
 
