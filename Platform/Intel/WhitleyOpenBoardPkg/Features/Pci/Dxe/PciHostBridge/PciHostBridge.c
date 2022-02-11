@@ -500,7 +500,7 @@ BridgeAllocateResources (
 
             AddrLen   = RootBridge->ResAllocNode[Index].Length;
             Alignment = RootBridge->ResAllocNode[Index].Alignment;
-
+            RootBridge->Aperture.IoLimit = 0x6FFF;
             DEBUG ((DEBUG_INFO, "\n[%d.%d] Resource Type to assign :     %s\n", Socket, Stack, mPciResourceTypeStr[Index]));
             DEBUG ((DEBUG_INFO, "      Length to allocate:           %lx\n", RootBridge->ResAllocNode[Index].Length));
             DEBUG ((DEBUG_INFO, "      Alignment:                    %lx\n", Alignment));
