@@ -140,9 +140,7 @@ IsAspeedPresent (
   //AST2520-A1 0x04010203
   //AST2530-A1 0x04010403
   //
-  if ((DeviceID & 0xff0000ff) == 0x04000003) {
-   PresenceStatus = TRUE;
-  }
+  PresenceStatus = TRUE;
  }
  IoWrite8 (ASPEED2500_SIO_INDEX_PORT, ASPEED2500_SIO_LOCK);
  return PresenceStatus;

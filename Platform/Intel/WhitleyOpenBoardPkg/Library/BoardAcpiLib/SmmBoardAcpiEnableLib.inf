@@ -42,7 +42,7 @@
   SmmBoardAcpiEnableLib.c
 
 [Protocols]
-  gDynamicSiLibrarySmmProtocolGuid                 ## CONSUMES
+  gDynamicSiLibraryProtocolGuid                 ## CONSUMES
 
 [Depex]
-  gDynamicSiLibrarySmmProtocolGuid
+  gDynamicSiLibraryProtocolGuid

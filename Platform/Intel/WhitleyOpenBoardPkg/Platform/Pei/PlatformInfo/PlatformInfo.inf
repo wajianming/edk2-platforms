@@ -37,6 +37,7 @@
   PeimEntryPoint
   PcdLib
   DebugLib
+  PostCodeLib
   HobLib
   IoLib
   PlatformHooksLib

@@ -11,6 +11,7 @@
 #include <GpioPinsSklH.h>
 #include <Library/GpioLib.h>
 #include <Library/PchInfoLib.h>
+#include <Library/PostCodeLib.h>
 
 #include <Ppi/DynamicSiLibraryPpi.h>
 
@@ -485,59 +486,17 @@ GetPlatformInfo (
 {
 
 
-  UINT32                  BoardId;
-  UINT32                  BoardRev;
   EFI_PEI_PCI_CFG2_PPI    *PciCfgPpi;
   EFI_STATUS              Status;
 
   PciCfgPpi = (**PeiServices).PciCfg;
   ASSERT (PciCfgPpi != NULL);
 
-  PlatformInfoHob->BoardId = TypeNeonCityEPRP;
-  DEBUG ((DEBUG_INFO, "Use GPIO to read Board ID\n"));
-
-  Status = GpioGetBoardId (&BoardId);
-  if (EFI_ERROR (Status)) {
-    DEBUG ((EFI_D_ERROR, "Error: Can't read GPIO to get Board ID!\n"));
-    return Status;
-  }
-  Status = GpioGetBoardRevId (&BoardRev);
-  if (EFI_ERROR(Status)) {
-    DEBUG ((EFI_D_ERROR, "Error: Can't read GPIO to get Board ID!\n"));
-    return Status;
-  }
-  PlatformInfoHob->TypeRevisionId = BoardRev;
-
-  switch (BoardId) {
-    case 0x00:  // for Simics
-      PlatformInfoHob->BoardId = TypeWilsonCityRP;
-    break;
-    case 0x01:
-      PlatformInfoHob->BoardId = TypeWilsonCityRP;
-      DEBUG ((DEBUG_INFO, "Board ID = TypeWilsonCityRP\n"));
-      break;
-    case 0x12:
-      PlatformInfoHob->BoardId = TypeWilsonCityRP;
-      DEBUG((DEBUG_INFO, "Board ID = TypeWilsonCityRP\n"));
-      break;
-    case 0x15:
-      PlatformInfoHob->BoardId = TypeWilsonCitySMT;
-      DEBUG((DEBUG_INFO, "Board ID = TypeWilsonCitySMT\n"));
-      break;
-    case 0x17:
-    case 0x18:
-      PlatformInfoHob->BoardId = TypeCooperCityRP;
-      DEBUG((DEBUG_INFO, "Board ID = TypeCooperCityRP\n"));
-      break;
-    default:
-      PlatformInfoHob->BoardId = TypePlatformDefault;
-      DEBUG ((DEBUG_INFO, "Board ID = %2X Default set to TypePlatformDefault\n",BoardId));
-      break;
-  }
-
+  PlatformInfoHob->BoardId = TypeWilsonCityRP;
+  PlatformInfoHob->TypeRevisionId = 0x01;
   GatherQATInfo(PlatformInfoHob);
 
-  DEBUG ((DEBUG_INFO, "Board Rev.: %d\n", BoardRev));
+  DEBUG ((DEBUG_INFO, "Board: Supermicro X12DPG-U6, Board Rev.: %d\n", PlatformInfoHob->TypeRevisionId));
   return EFI_SUCCESS;
 }
 
@@ -628,6 +587,8 @@ PlatformInfoInit (
   UINT32                  CpuType;
   UINT8                   CpuStepping;
   DYNAMIC_SI_LIBARY_PPI   *DynamicSiLibraryPpi = NULL;
+
+  POST_CODE (0x10);
 
   PciCfgPpi = (**PeiServices).PciCfg;
   if (PciCfgPpi == NULL) {
