@@ -795,7 +795,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
 [FV.FvOpromUncompressed]
   !include WhitleyOpenBoardPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid         = B6EDE22C-DE30-45fa-BB09-CA202C1654B7
-  INF AST2600BinPkg/AST2600GopDxe.inf
+  INF edk2-non-osi/Drivers/ASpeed/AST2600BinPkg/AST2600GopDxe.inf
 
 [FV.FvOprom]
   !include WhitleyOpenBoardPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf

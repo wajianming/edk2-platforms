@@ -766,7 +766,7 @@
 
   $(PLATFORM_SI_BIN_PACKAGE)/CpxMicrocode/MicrocodeUpdates.inf
   $(PLATFORM_SI_BIN_PACKAGE)/IcxMicrocode/MicrocodeUpdates.inf
-  AST2600BinPkg/AST2600GopDxe.inf
+  edk2-non-osi/Drivers/ASpeed/AST2600BinPkg/AST2600GopDxe.inf
 
   MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf
   MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
