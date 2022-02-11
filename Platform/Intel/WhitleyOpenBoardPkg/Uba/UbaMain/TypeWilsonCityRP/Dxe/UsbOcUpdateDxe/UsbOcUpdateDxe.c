@@ -14,35 +14,35 @@
 #include <ConfigBlock/Usb2PhyConfig.h>
 
 USB_OVERCURRENT_PIN TypeWilsonCityRPUsb20OverCurrentMappings[PCH_MAX_USB2_PORTS] = {
-                          UsbOverCurrentPinSkip,   //Port00: BMC
-                          UsbOverCurrentPinSkip,   //Port01: BMC
-                          UsbOverCurrentPin0,      //Port02: Rear Panel
-                          UsbOverCurrentPin1,      //Port03: Rear Panel
-                          UsbOverCurrentPin1,      //Port04: Rear Panel
-                          UsbOverCurrentPinSkip,   //Port05: NC
-                          UsbOverCurrentPinSkip,   //Port06: NC
-                          UsbOverCurrentPin4,      //Port07: Type A internal
-                          UsbOverCurrentPinSkip,   //Port08: NC
-                          UsbOverCurrentPinSkip,   //Port09: NC
-                          UsbOverCurrentPin6,      //Port10: Front Panel
-                          UsbOverCurrentPinSkip,   //Port11: NC
-                          UsbOverCurrentPin6,      //Port12: Front Panel
-                          UsbOverCurrentPinSkip,   //Port13: NC
+                          UsbOverCurrentPinSkip,   //Port00:
+                          UsbOverCurrentPinSkip,   //Port01:
+                          UsbOverCurrentPinSkip,   //Port02:
+                          UsbOverCurrentPinSkip,   //Port03:
+                          UsbOverCurrentPinSkip,   //Port04:
+                          UsbOverCurrentPinSkip,   //Port05:
+                          UsbOverCurrentPinSkip,
+                          UsbOverCurrentPinSkip,
+                          UsbOverCurrentPinSkip,
+                          UsbOverCurrentPinSkip,
+                          UsbOverCurrentPinSkip,
+                          UsbOverCurrentPinSkip,
+                          UsbOverCurrentPinSkip,
+                          UsbOverCurrentPinSkip,
                           UsbOverCurrentPinSkip,
                           UsbOverCurrentPinSkip
                        };
 
 USB_OVERCURRENT_PIN TypeWilsonCityRPUsb30OverCurrentMappings[PCH_MAX_USB3_PORTS] = {
-                          UsbOverCurrentPin6,    //Port01: Front Panel
-                          UsbOverCurrentPin6,    //Port02: Front Panel
-                          UsbOverCurrentPin0,    //Port03: Rear Panel
-                          UsbOverCurrentPin1,    //Port04: Rear Panel
-                          UsbOverCurrentPin1,    //Port05: Rear Panel
-                          UsbOverCurrentPinSkip, //Port06: NC
-                          UsbOverCurrentPinSkip,
-                          UsbOverCurrentPinSkip,
-                          UsbOverCurrentPinSkip,
-                          UsbOverCurrentPinSkip
+                          UsbOverCurrentPinSkip, //Port01:
+                          UsbOverCurrentPinSkip, //Port02:
+                          UsbOverCurrentPinSkip, //Port03:
+                          UsbOverCurrentPinSkip, //Port04:
+                          UsbOverCurrentPinSkip, //Port05:
+                          UsbOverCurrentPinSkip, //Port06:
+                          UsbOverCurrentPinSkip, //Port07:
+                          UsbOverCurrentPinSkip, //Port08:
+                          UsbOverCurrentPinSkip, //Port09:
+                          UsbOverCurrentPinSkip  //Port10:
                        };
 
 USB2_PHY_PARAMETERS         TypeWilsonCityRPUsb20AfeParams[PCH_H_XHCI_MAX_USB2_PHYSICAL_PORTS] = {

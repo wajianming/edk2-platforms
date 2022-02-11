@@ -147,10 +147,10 @@
   gMinPlatformPkgTokenSpaceGuid.PcdBootStage|6
 
   gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0x08
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF                    # Enable asserts, prints, code, clear memory, and deadloops on asserts.
-  gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel|0x80200047      # Built in messages:  Error, MTRR, info, load, warn, init
 !if $(TARGET) == "DEBUG"
   gEfiSourceLevelDebugPkgTokenSpaceGuid.PcdDebugLoadImageMethod|0x2     # This is set to INT3 (0x2) for Simics source level debugging
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2F                    # Enable asserts, prints, code, clear memory, and deadloops on asserts.
+  gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel|0x80200047      # Built in messages:  Error, MTRR, info, load, warn, init
 !endif
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdLoadModuleAtFixAddressEnable|0
