@@ -201,12 +201,14 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
   # These are out of flash layout order because FvAdvanced gets any remaining space
   #
   SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize      = 0x00010000
-  SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize        = 0x00230000
+
   !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
-    SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x0004C000
+    SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize        = 0x00230000
   !else
-    SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x700000
+    SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize        = 0x00900000
   !endif
+
+  SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize      = 0x0004C000
   SET gMinPlatformPkgTokenSpaceGuid.PcdFlashFvAdvancedSize      = gCpPlatFlashTokenSpaceGuid.PcdFlashFdMainSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvUefiBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvOsBootSize - gMinPlatformPkgTokenSpaceGuid.PcdFlashFvSecuritySize
 
   #
@@ -549,47 +551,38 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
 [FV.FvUefiBootUncompressed]
   !include WhitleyOpenBoardPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid         = C4D3B0E2-FB26-44f8-A05B-E95895FCB960
-  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
+  !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
     INF  MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
+    INF  MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
+    INF  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
+
     INF  MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
     INF  MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
-    INF  MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
     INF  MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
-  #!endif
 
-  INF  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
-
-  !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == TRUE
-    FILE DRIVER = 81339b04-fa8c-4be0-9ca7-916fc5319eb5 {
-      SECTION DXE_DEPEX_EXP = {FALSE}
-      SECTION PE32 = $(RP_PKG)/Features/LinuxBoot/LinuxBinaries/linux.efi
-    }
-
-    FILE FREEFORM = 16b60e5d-f1c5-42f0-9b34-08C81C430473 {
-      SECTION RAW = $(RP_PKG)/Features/LinuxBoot/LinuxBinaries/initrd.cpio.xz
-    }
-  !endif
-
-  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
-    INF  MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
     INF  MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
     INF  MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+    INF  MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+
+    INF  MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
     INF  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
-    INF  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
     INF  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+    #ATA for IDE/AHCI/RAID support
+    INF  MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
+    INF  MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
+
+    INF  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
     INF  MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
     INF  MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
     INF  MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
-  #!endif
-  INF  MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+    INF  BoardModulePkg/BoardBdsHookDxe/BoardBdsHookDxe.inf
+  !else
+    INF  MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
+  !endif
   INF  MdeModulePkg/Universal/PlatformDriOverrideDxe/PlatformDriOverrideDxe.inf
 
   INF  MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
   INF  MdeModulePkg/Universal/SmbiosMeasurementDxe/SmbiosMeasurementDxe.inf
-  #ATA for IDE/AHCI/RAID support
-  INF  MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
-  INF  MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
-  INF  BoardModulePkg/BoardBdsHookDxe/BoardBdsHookDxe.inf
 
 [FV.FvUefiBoot]
   !include WhitleyOpenBoardPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
@@ -604,6 +597,17 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
 [FV.FvOsBootUncompressed]
   !include WhitleyOpenBoardPkg/Include/Fdf/CommonSpiFvHeaderInfo.fdf
   FvNameGuid         = CDBB7B35-6833-4ed6-9AB2-57D2ACDDF6F0
+
+  !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == TRUE
+    FILE DRIVER = 81339b04-fa8c-4be0-9ca7-916fc5319eb5 {
+      SECTION DXE_DEPEX_EXP = {FALSE}
+      SECTION PE32 = $(RP_PKG)/Features/LinuxBoot/LinuxBinaries/linux.efi
+    }
+  
+    FILE FREEFORM = 16b60e5d-f1c5-42f0-9b34-08C81C430473 {
+      SECTION RAW = $(RP_PKG)/Features/LinuxBoot/LinuxBinaries/initrd.cpio.xz
+    }
+  !endif
 
   #
   #  DXE Phase modules
@@ -637,9 +641,7 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
   !endif
 
   INF  UefiCpuPkg/CpuIo2Dxe/CpuIo2Dxe.inf
-  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
-    INF  MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
-  #!endif
+  INF  MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
   INF  WhitleyOpenBoardPkg/Cpu/Dxe/PlatformCpuPolicy/PlatformCpuPolicy.inf
   INF  UefiCpuPkg/CpuDxe/CpuDxe.inf
   INF  UefiCpuPkg/CpuS3DataDxe/CpuS3DataDxe.inf
@@ -659,11 +661,14 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
 
   INF  MdeModulePkg/Universal/MonotonicCounterRuntimeDxe/MonotonicCounterRuntimeDxe.inf
 
-  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
+  !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
     INF  RuleOverride = UI MdeModulePkg/Application/UiApp/UiApp.inf
     INF  MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
     INF  FatPkg/EnhancedFatDxe/Fat.inf
-  #!endif
+  !else
+    INF  RuleOverride = UI MdeModulePkg/Application/UiApp/UiApp.inf
+    INF  MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf
+  !endif
   INF  MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
   #TPM when TPM enable, SecurityStubDxe needs to be removed from this FV.
   INF  MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
@@ -674,7 +679,6 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
   INF  PcAtChipsetPkg/HpetTimerDxe/HpetTimerDxe.inf
 
   INF  WhitleyOpenBoardPkg/Features/Pci/Dxe/PciPlatform/PciPlatform.inf
-  INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 
   INF  ShellPkg/Application/Shell/Shell.inf
 
@@ -703,11 +707,10 @@ SET gMinPlatformPkgTokenSpaceGuid.PcdFlashAreaSize         = 0x01000000
 
   INF  MdeModulePkg/Universal/Acpi/BootScriptExecutorDxe/BootScriptExecutorDxe.inf
 
-  # UEFI USB stack
-  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
+  !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
+    INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
     INF  MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
-  #!endif
-  INF  MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf
+  !endif
   INF  BoardModulePkg/LegacySioDxe/LegacySioDxe.inf
   INF  MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
 

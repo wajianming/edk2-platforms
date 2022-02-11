@@ -135,7 +135,7 @@
 
 [PcdsFixedAtBuild]
   gEfiCpRcPkgTokenSpaceGuid.PcdRankSwitchFixOption|2
-  gPlatformTokenSpaceGuid.PcdLinuxBootEnable|TRUE
+  gPlatformTokenSpaceGuid.PcdLinuxBootEnable|FALSE
   !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == TRUE
     gPlatformTokenSpaceGuid.PcdFastBoot|TRUE
   !else
@@ -171,7 +171,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdShadowPeimOnS3Boot|TRUE
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdHwErrStorageSize|0x0
-  gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|0x0
+  gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|0x1
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock|100000000
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"INTEL "

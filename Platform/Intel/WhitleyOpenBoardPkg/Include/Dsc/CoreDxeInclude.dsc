@@ -61,9 +61,9 @@
   PcAtChipsetPkg/HpetTimerDxe/HpetTimerDxe.inf
 
   #MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
-  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 
-  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
+  !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
+    MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
     #MdeModulePkg/Bus/Pci/SataControllerDxe/SataControllerDxe.inf
     #MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
     #MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
@@ -78,11 +78,11 @@
     MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
     MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
     FatPkg/EnhancedFatDxe/Fat.inf
-  #!endif
-  #MdeModulePkg/Universal/Console/GraphicsOutputDxe/GraphicsOutputDxe.inf
-  MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+    #MdeModulePkg/Universal/Console/GraphicsOutputDxe/GraphicsOutputDxe.inf
+    MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+    #MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+    MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
 
-  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
     MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
     MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
 
@@ -106,7 +106,23 @@
       <LibraryClasses>
         PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
     }
-  #!endif  
+  !else
+    MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
+    MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+
+    MdeModulePkg/Application/UiApp/UiApp.inf {
+      <LibraryClasses>
+        PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
+        NULL|MdeModulePkg/Library/DeviceManagerUiLib/DeviceManagerUiLib.inf
+        NULL|MdeModulePkg/Library/BootManagerUiLib/BootManagerUiLib.inf
+        NULL|MdeModulePkg/Library/BootMaintenanceManagerUiLib/BootMaintenanceManagerUiLib.inf
+    }
+    MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf {
+      <LibraryClasses>
+        PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
+    }
+
+  !endif  
 
   MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
   MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf
