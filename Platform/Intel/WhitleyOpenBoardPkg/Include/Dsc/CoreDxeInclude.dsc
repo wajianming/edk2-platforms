@@ -63,47 +63,50 @@
   #MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
   MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 
-  #MdeModulePkg/Bus/Pci/SataControllerDxe/SataControllerDxe.inf
-  #MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
-  #MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
-  MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
-  MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
-  MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
-  MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
-  MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
-  MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
+    #MdeModulePkg/Bus/Pci/SataControllerDxe/SataControllerDxe.inf
+    #MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
+    #MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
+    MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
+    MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
+    MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
+    MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+    MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
+    MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 
-  MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
-  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
-  MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
-  FatPkg/EnhancedFatDxe/Fat.inf
-
+    MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+    MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+    MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
+    FatPkg/EnhancedFatDxe/Fat.inf
+  #!endif
   #MdeModulePkg/Universal/Console/GraphicsOutputDxe/GraphicsOutputDxe.inf
   MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
 
-  MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
-  MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+  #!if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == FALSE
+    MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
+    MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
 
-  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+    MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
 
-  MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
+    MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
 
-  MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
-  MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
+    MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+    MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
 
-  MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
+    MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
 
-  MdeModulePkg/Application/UiApp/UiApp.inf {
-    <LibraryClasses>
-      PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
-      NULL|MdeModulePkg/Library/DeviceManagerUiLib/DeviceManagerUiLib.inf
-      NULL|MdeModulePkg/Library/BootManagerUiLib/BootManagerUiLib.inf
-      NULL|MdeModulePkg/Library/BootMaintenanceManagerUiLib/BootMaintenanceManagerUiLib.inf
-  }
-  MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf {
-    <LibraryClasses>
-      PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
-  }
+    MdeModulePkg/Application/UiApp/UiApp.inf {
+      <LibraryClasses>
+        PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
+        NULL|MdeModulePkg/Library/DeviceManagerUiLib/DeviceManagerUiLib.inf
+        NULL|MdeModulePkg/Library/BootManagerUiLib/BootManagerUiLib.inf
+        NULL|MdeModulePkg/Library/BootMaintenanceManagerUiLib/BootMaintenanceManagerUiLib.inf
+    }
+    MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenuApp.inf {
+      <LibraryClasses>
+        PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
+    }
+  #!endif  
 
   MdeModulePkg/Core/PiSmmCore/PiSmmIpl.inf
   MdeModulePkg/Core/PiSmmCore/PiSmmCore.inf

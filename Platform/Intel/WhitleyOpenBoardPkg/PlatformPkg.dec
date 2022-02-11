@@ -177,6 +177,8 @@
 
   gPlatformTokenSpaceGuid.PcdSupportLegacyStack|TRUE|BOOLEAN|0x30000030
   gPlatformTokenSpaceGuid.PcdMaxOptionRomNumber|0x4|UINT8|0x30000031
+  gPlatformTokenSpaceGuid.PcdLinuxBootEnable|FALSE|BOOLEAN|0x30000040
+  gPlatformTokenSpaceGuid.PcdFastBoot|FALSE|BOOLEAN|0x30000043
 
   gPlatformTokenSpaceGuid.PcdCmosDebugPrintLevelReg|0x4C|UINT8|0x30000032
 

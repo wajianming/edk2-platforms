@@ -135,6 +135,17 @@
 
 [PcdsFixedAtBuild]
   gEfiCpRcPkgTokenSpaceGuid.PcdRankSwitchFixOption|2
+  gPlatformTokenSpaceGuid.PcdLinuxBootEnable|TRUE
+  !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == TRUE
+    gPlatformTokenSpaceGuid.PcdFastBoot|TRUE
+  !else
+    gPlatformTokenSpaceGuid.PcdFastBoot|FALSE
+  !endif
+  #!if gPlatformTokenSpaceGuid.PcdFastBoot == TRUE
+  # gIpmiFeaturePkgTokenSpaceGuid.PcdIpmiFeatureEnable|FALSE
+  #  gPlatformTokenSpaceGuid.PcdUpdateConsoleInBds|FALSE
+  #!endif
+
 
   ## MinPlatform Boot Stage Selector
   # Stage 1 - enable debug (system deadloop after debug init)
@@ -521,8 +532,8 @@
   ReadFfsLib|$(RP_PKG)/Library/ReadFfsLib/ReadFfsLib.inf
   PlatformSetupVariableSyncLib|$(RP_PKG)/Library/PlatformSetupVariableSyncLibNull/PlatformSetupVariableSyncLibNull.inf
   PlatformVariableHookLib |$(RP_PKG)/Library/PlatformVariableHookLibNull/PlatformVariableHookLibNull.inf
+  
 
-  PlatformBootManagerLib|$(PLATFORM_PKG)/Bds/Library/DxePlatformBootManagerLib/DxePlatformBootManagerLib.inf
   SerialPortLib|$(RP_PKG)/Library/SerialPortLib/SerialPortLib.inf
   PlatformHooksLib|$(RP_PKG)/Library/PlatformHooksLib/PlatformHooksLib.inf
 
@@ -585,6 +596,19 @@
   SetCacheMtrrLib|$(RP_PKG)/Library/SetCacheMtrrLib/SetCacheMtrrLib.inf
 
 [LibraryClasses.common.DXE_CORE, LibraryClasses.common.DXE_SMM_DRIVER, LibraryClasses.common.SMM_CORE, LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.DXE_RUNTIME_DRIVER, LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.UEFI_APPLICATION]
+  !if gPlatformTokenSpaceGuid.PcdLinuxBootEnable == TRUE
+    LinuxBootLib|$(RP_PKG)/Features/LinuxBoot/LinuxBoot.inf
+    LoadLinuxLib|OvmfPkg/Library/LoadLinuxLib/LoadLinuxLib.inf
+  !else
+    LinuxBootLib|$(RP_PKG)/Features/LinuxBoot/LinuxBootNull.inf
+  !endif
+
+  !if gPlatformTokenSpaceGuid.PcdFastBoot == TRUE
+    PlatformBootManagerLib|$(RP_PKG)/Override/Platform/Intel/MinPlatformPkg/Bds/Library/DxePlatformBootManagerLib/DxePlatformBootManagerLib.inf
+  !else
+    PlatformBootManagerLib|$(PLATFORM_PKG)/Bds/Library/DxePlatformBootManagerLib/DxePlatformBootManagerLib.inf
+  !endif  
+
   DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
 
   Tcg2PhysicalPresenceLib|$(RP_PKG)/Library/Tcg2PhysicalPresenceLibNull/DxeTcg2PhysicalPresenceLib.inf
