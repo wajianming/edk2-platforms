@@ -1010,5 +1010,5 @@ DEFINE EDKII_DSC_FEATURE_BUILD_OPTIONS = $(EDKII_DSC_FEATURE_BUILD_OPTIONS) $(ME
 [BuildOptions]
   GCC:*_GCC5_*_CC_FLAGS = -Wno-overflow -Wno-discarded-qualifiers -Wno-unused-variable -Wno-unused-but-set-variable -Wno-incompatible-pointer-types -mabi=ms
   GCC:*_GCC5_IA32_DLINK_FLAGS = -z common-page-size=0x20 -z muldefs
-  GCC:*_GCC5_X64_DLINK_FLAGS  = -z common-page-size=0x20 -z muldefs
+  GCC:*_GCC5_X64_DLINK_FLAGS  = -z common-page-size=0x1000 -z muldefs
   MSFT:*_*_*_CC_FLAGS = /FAsc
